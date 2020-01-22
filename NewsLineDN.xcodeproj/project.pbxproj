@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		995719F423D814A50086956C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995719F323D814A50086956C /* AppDelegate.swift */; };
 		995719F623D814A50086956C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995719F523D814A50086956C /* SceneDelegate.swift */; };
-		995719F823D814A50086956C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995719F723D814A50086956C /* ViewController.swift */; };
 		995719FB23D814A60086956C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 995719F923D814A60086956C /* Main.storyboard */; };
 		995719FD23D814A80086956C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 995719FC23D814A80086956C /* Assets.xcassets */; };
 		99571A0023D814A80086956C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 995719FE23D814A80086956C /* LaunchScreen.storyboard */; };
+		99571A0823D81E0E0086956C /* NewsLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99571A0723D81E0E0086956C /* NewsLineViewController.swift */; };
+		99571A1023D82A8D0086956C /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99571A0E23D82A8D0086956C /* NewsTableViewCell.swift */; };
+		99571A1123D82A8D0086956C /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99571A0F23D82A8D0086956C /* NewsTableViewCell.xib */; };
+		99571A1423D83A070086956C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99571A1223D83A070086956C /* WebViewController.swift */; };
+		99571A1523D83A070086956C /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99571A1323D83A070086956C /* WebViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		995719F023D814A50086956C /* NewsLineDN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsLineDN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		995719F323D814A50086956C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		995719F523D814A50086956C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		995719F723D814A50086956C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		995719FA23D814A60086956C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		995719FC23D814A80086956C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		995719FF23D814A80086956C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99571A0123D814A80086956C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99571A0723D81E0E0086956C /* NewsLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLineViewController.swift; sourceTree = "<group>"; };
+		99571A0E23D82A8D0086956C /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		99571A0F23D82A8D0086956C /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		99571A1223D83A070086956C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		99571A1323D83A070086956C /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,27 @@
 		995719F223D814A50086956C /* NewsLineDN */ = {
 			isa = PBXGroup;
 			children = (
+				99571A0923D828A60086956C /* View */,
 				995719F323D814A50086956C /* AppDelegate.swift */,
 				995719F523D814A50086956C /* SceneDelegate.swift */,
-				995719F723D814A50086956C /* ViewController.swift */,
 				995719F923D814A60086956C /* Main.storyboard */,
 				995719FC23D814A80086956C /* Assets.xcassets */,
 				995719FE23D814A80086956C /* LaunchScreen.storyboard */,
 				99571A0123D814A80086956C /* Info.plist */,
+				99571A0723D81E0E0086956C /* NewsLineViewController.swift */,
 			);
 			path = NewsLineDN;
+			sourceTree = "<group>";
+		};
+		99571A0923D828A60086956C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99571A0E23D82A8D0086956C /* NewsTableViewCell.swift */,
+				99571A0F23D82A8D0086956C /* NewsTableViewCell.xib */,
+				99571A1223D83A070086956C /* WebViewController.swift */,
+				99571A1323D83A070086956C /* WebViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +148,8 @@
 				99571A0023D814A80086956C /* LaunchScreen.storyboard in Resources */,
 				995719FD23D814A80086956C /* Assets.xcassets in Resources */,
 				995719FB23D814A60086956C /* Main.storyboard in Resources */,
+				99571A1523D83A070086956C /* WebViewController.xib in Resources */,
+				99571A1123D82A8D0086956C /* NewsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				995719F823D814A50086956C /* ViewController.swift in Sources */,
+				99571A1423D83A070086956C /* WebViewController.swift in Sources */,
 				995719F423D814A50086956C /* AppDelegate.swift in Sources */,
+				99571A1023D82A8D0086956C /* NewsTableViewCell.swift in Sources */,
 				995719F623D814A50086956C /* SceneDelegate.swift in Sources */,
+				99571A0823D81E0E0086956C /* NewsLineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
