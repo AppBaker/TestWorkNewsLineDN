@@ -9,7 +9,7 @@
 import UIKit
 
 class NewsTableViewCell: UITableViewCell {
-
+    
     @IBOutlet var title: UILabel!
     @IBOutlet var newsImageView: UIImageView!
     
@@ -17,11 +17,19 @@ class NewsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
+    }
+    
+    weak var viewModel: TableViewCellViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            title.text = viewModel.title
+            newsImageView.image = viewModel.image
+        }
     }
     
 }
