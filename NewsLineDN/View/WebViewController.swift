@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import WebKit
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, WKNavigationDelegate {
     
-    var newsTitle: String?
+    var webView: WKWebView!
+    var urlString: String?
 
-    @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,9 +21,19 @@ class WebViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let newsTitle = newsTitle {
-            title = newsTitle
-            label.text = newsTitle
+        
+        webView = WKWebView()
+        webView.navigationDelegate = self
+        view = webView
+     
+        if let urlString = urlString {
+            guard let url = URL(string: urlString) else { return }
+            webView.load(URLRequest(url: url))
+            webView.allowsBackForwardNavigationGestures = true
         }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
     }
 }

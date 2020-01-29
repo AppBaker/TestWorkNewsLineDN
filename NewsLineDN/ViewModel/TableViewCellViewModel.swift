@@ -30,7 +30,7 @@ class TableViewCellViewModel: TableViewCellViewModelType {
     }
     
     var description: String {
-        return article.description
+        return article.description ?? "No description"
     }
     
     var date: String {

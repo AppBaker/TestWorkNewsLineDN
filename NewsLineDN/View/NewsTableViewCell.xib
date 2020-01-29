@@ -19,22 +19,38 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tlT-OG-M66">
                         <rect key="frame" x="10" y="5" width="415" height="380"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWC-Di-5nN">
-                                <rect key="frame" x="20" y="0.0" width="242" height="170"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWC-Di-5nN">
+                                <rect key="frame" x="20" y="0.0" width="395" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="eJA-wI-d1j">
-                                <rect key="frame" x="0.0" y="180" width="282" height="200"/>
+                                <rect key="frame" x="76.5" y="30.5" width="282" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="3Et-LV-FtB"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2X-CY-EiE">
+                                <rect key="frame" x="20" y="240.5" width="395" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCf-y0-fPf">
+                                <rect key="frame" x="20" y="271" width="395" height="109"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="tWC-Di-5nN" secondAttribute="trailing" id="t4b-cn-pFZ"/>
-                            <constraint firstItem="tWC-Di-5nN" firstAttribute="leading" secondItem="tlT-OG-M66" secondAttribute="leading" constant="20" symbolic="YES" id="yBW-gT-rcI"/>
+                            <constraint firstAttribute="trailing" secondItem="tWC-Di-5nN" secondAttribute="trailing" id="187-0g-RhT"/>
+                            <constraint firstItem="v2X-CY-EiE" firstAttribute="leading" secondItem="tlT-OG-M66" secondAttribute="leading" constant="20" symbolic="YES" id="3rg-FJ-zKs"/>
+                            <constraint firstAttribute="trailing" secondItem="v2X-CY-EiE" secondAttribute="trailing" id="B4a-HO-y09"/>
+                            <constraint firstItem="NCf-y0-fPf" firstAttribute="leading" secondItem="tlT-OG-M66" secondAttribute="leading" constant="20" symbolic="YES" id="C83-sy-TCc"/>
+                            <constraint firstItem="tWC-Di-5nN" firstAttribute="leading" secondItem="tlT-OG-M66" secondAttribute="leading" constant="20" symbolic="YES" id="jRX-Tw-aqi"/>
+                            <constraint firstAttribute="trailing" secondItem="NCf-y0-fPf" secondAttribute="trailing" id="kfH-4B-10c"/>
                         </constraints>
                     </stackView>
                 </subviews>
@@ -47,7 +63,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="newsDescription" destination="v2X-CY-EiE" id="y40-vs-5EL"/>
                 <outlet property="newsImageView" destination="eJA-wI-d1j" id="vNf-Kx-t5W"/>
+                <outlet property="postDate" destination="NCf-y0-fPf" id="06g-Ek-d4F"/>
                 <outlet property="title" destination="tWC-Di-5nN" id="xkP-qq-qvw"/>
             </connections>
             <point key="canvasLocation" x="196.37681159420291" y="249.10714285714283"/>

@@ -10,8 +10,10 @@ import UIKit
 
 class NewsTableViewCell: UITableViewCell {
     
-    @IBOutlet var title: UILabel!
-    @IBOutlet var newsImageView: UIImageView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var newsImageView: UIImageView!
+    @IBOutlet weak var postDate: UILabel!
+    @IBOutlet weak var newsDescription: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,8 +30,30 @@ class NewsTableViewCell: UITableViewCell {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
             title.text = viewModel.title
-            newsImageView.image = viewModel.image
+            if let image = viewModel.image {
+                newsImageView.image = image
+            } else {
+                newsImageView.image = #imageLiteral(resourceName: "loading")
+            }
+            
+            newsDescription.text = viewModel.description
+            
+            
+            postDate.text = dateFromString(fromString: viewModel.date)
         }
     }
     
+    func dateFromString(fromString: String) -> String {
+                let dateFormater = DateFormatter()
+                dateFormater.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                
+                let date = dateFormater.date(from: fromString)
+                if let date = date {
+                    let myDateFormater = DateFormatter()
+                    myDateFormater.dateFormat = "dd/MM/YYYY"
+                return myDateFormater.string(from: date)
+                } else {
+                    return "no date"
+        }
+    }
 }

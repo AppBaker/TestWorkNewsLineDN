@@ -26,11 +26,12 @@ struct AlamofireNetworkRequest {
                 if let listOfArticles = arrayOfItems["articles"] as? Array<[String: Any]> {
                     for article in listOfArticles {
                         let article = Article(title: article["title"] as! String,
-                                              description: article["description"] as! String,
+                                              description: article["description"] as? String,
                                               urlToImage: article["urlToImage"] as? String,
                                               publishedAt: article["publishedAt"] as! String,
-                                              url: article["url"] as! String
-                                              )
+                                              url: article["url"] as! String,
+                                              image: nil
+                        )
                         articles.append(article)
                     }
                     completion(articles)
@@ -38,6 +39,46 @@ struct AlamofireNetworkRequest {
                 
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    
+    static func loadImage(url: String?, completion: @escaping (_ articles: UIImage?)->()){
+        
+        guard let imageUrl = url else {
+            print("######## IMAGE URL = NIL #######")
+            completion(#imageLiteral(resourceName: "Error"))
+            return
+        }
+        
+        guard let url = URL(string: imageUrl) else {
+            completion(#imageLiteral(resourceName: "Error"))
+            print("######## NOT IMAGE URL #######")
+            return
+        }
+        
+        AF.request(url, method: .get).validate().response { (response) in
+            
+            switch response.result {
+            case .success(let value):
+                guard let imageData = value else {
+                    print("######## NOT IMAGE DATA #######")
+                    completion(#imageLiteral(resourceName: "Error"))
+                    return
+                }
+                
+                if let image = UIImage(data: imageData) {
+                    print("########## GET IMAGE ########")
+                    completion(image)
+                } else {
+                    print("######## NO IMAGE IN DATA #######")
+                    completion(#imageLiteral(resourceName: "Error"))
+                }
+                
+            case .failure(let error):
+                print("######## LOAD IMAGE ERROR ########", error)
+                completion(#imageLiteral(resourceName: "Error"))
+                
             }
         }
     }

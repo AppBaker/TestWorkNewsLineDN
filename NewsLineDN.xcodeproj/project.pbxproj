@@ -23,7 +23,6 @@
 		99571A1F23D8718F0086956C /* AlamofireNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99571A1E23D8718F0086956C /* AlamofireNetworkRequest.swift */; };
 		995B02D623D94626005008AC /* TableViewCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B02D523D94626005008AC /* TableViewCellViewModelType.swift */; };
 		995B02D823D94788005008AC /* TableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B02D723D94788005008AC /* TableViewCellViewModel.swift */; };
-		995B02DA23D99902005008AC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B02D923D99902005008AC /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +46,6 @@
 		99571A1E23D8718F0086956C /* AlamofireNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkRequest.swift; sourceTree = "<group>"; };
 		995B02D523D94626005008AC /* TableViewCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModelType.swift; sourceTree = "<group>"; };
 		995B02D723D94788005008AC /* TableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModel.swift; sourceTree = "<group>"; };
-		995B02D923D99902005008AC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				99571A1E23D8718F0086956C /* AlamofireNetworkRequest.swift */,
-				995B02D923D99902005008AC /* Network.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -283,7 +280,6 @@
 				99571A1423D83A070086956C /* WebViewController.swift in Sources */,
 				995719F423D814A50086956C /* AppDelegate.swift in Sources */,
 				99571A1F23D8718F0086956C /* AlamofireNetworkRequest.swift in Sources */,
-				995B02DA23D99902005008AC /* Network.swift in Sources */,
 				99571A1C23D869840086956C /* NewsTableViewModel.swift in Sources */,
 				99571A1023D82A8D0086956C /* NewsTableViewCell.swift in Sources */,
 				995719F623D814A50086956C /* SceneDelegate.swift in Sources */,

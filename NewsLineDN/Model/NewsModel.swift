@@ -10,7 +10,7 @@ import UIKit
 
 struct Article {
     var title: String
-    var description: String
+    var description: String?
     var urlToImage: String?
     var publishedAt: String
     var url: String

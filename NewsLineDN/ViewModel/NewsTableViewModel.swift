@@ -10,69 +10,61 @@ import Foundation
 import Alamofire
 
 protocol LoadDataDelegate {
-    func loadTableData()
-    func loadTable()
-    func updateImage(indexPath: IndexPath)
+    
+    func firstLoadTableData()
+    func reloadTable()
 }
 
 class NewsTableViewModel {
     
-    var lastLoadedImage = 0
+    var tableViewIsLoaded = false
+    var currentPage = 1
+    let pages = 5
     let prefetchCount = 5
+    var isListLoaded = false
+    var imageLoaded = 0
+    var firstListNewsCount = 0
+    
     var delegate: LoadDataDelegate?
     var listOfArticles = [Article]()
     
     
     
     let viewTitle = "News"
-    private let url = "https://newsapi.org/v2/everything?q=android&from=2019-04-00&sortBy=publishedAt&apiKey=26eddb253e7840f988aec61f2ece2907&page=5"
+    private let url = "http://newsapi.org/v2/everything?q=android&from=2019-04-00&sortBy=publishedAt&apiKey=bfa2ee84523d4d9889e397b2fd6c141c&page="
     
-    func getListOfArticles() {
-        AlamofireNetworkRequest.loadNews(url: url) { (articles) in
-            self.listOfArticles.append(contentsOf: articles)
-            self.delegate?.loadTable()
-            self.loadFirstBunchOfImages(count: self.prefetchCount)
-        }
+    func getUrl(page: Int) -> String {
+        return url + "\(page)"
     }
     
-    func loadFirstBunchOfImages(count: Int) {
-        let lastIndex = lastLoadedImage + count
-        print("$$$$$$$$$$$$$$$$$$", lastLoadedImage)
-        for index in lastLoadedImage..<lastIndex {
-            let indexPath = IndexPath(row: index, section: 0)
-            if !listOfArticles[index].isImageLoaded {
-                loadImageForIndex(indexPath: indexPath)
+    func loadPage() {
+        isListLoaded = false
+        if currentPage <= pages {
+            AlamofireNetworkRequest.loadNews(url: getUrl(page: currentPage)) { (articles) in
+                self.firstListNewsCount = articles.count
+                let startIndex = self.listOfArticles.count
+                self.listOfArticles.append(contentsOf: articles)
+                for index in startIndex..<self.listOfArticles.count {
+                    AlamofireNetworkRequest.loadImage(url: self.listOfArticles[index].urlToImage) { (image) in
+                        self.listOfArticles[index].image = image
+                        self.listOfArticles[index].isImageLoaded = true
+                        self.imageLoaded += 1
+
+                        if self.firstListNewsCount == self.imageLoaded, !self.tableViewIsLoaded {
+                            self.delegate?.firstLoadTableData()
+                        }
+                    }
+                }
+                self.isListLoaded = true
+                self.currentPage += 1
+                if self.tableViewIsLoaded {
+                    self.delegate?.reloadTable()
+                }
+                
             }
         }
     }
-    
-    func loadImageForIndex(indexPath: IndexPath) {
-        let url = listOfArticles[indexPath.row].urlToImage
-            Network.loadImage(fromURL: url) { (image) in
-                
-                print("LOADED IMAGE FOR \(indexPath.row)")
-        
-                self.listOfArticles[indexPath.row].image = image
-                self.listOfArticles[indexPath.row].isImageLoaded = true
-                self.lastLoadedImage += 1
-                self.delegate?.updateImage(indexPath: indexPath)
-                
-                if self.lastLoadedImage == self.prefetchCount {
-                    self.delegate?.loadTableData()
-                }
-                
-        }
-    }
-    
-    func loadImagesForRange(count: Int){
-        
-        let lastIndex = lastLoadedImage + count
-        for index in lastLoadedImage..<lastIndex {
-            let indexPath = IndexPath(row: index, section: 0)
-            loadImageForIndex(indexPath: indexPath)
-        }
-    }
-    
+
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelType? {
         let article = listOfArticles[indexPath.row]
         

@@ -20,15 +20,18 @@ class NewsLineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         viewModel = NewsTableViewModel()
         title = viewModel?.viewTitle
-        navigationController?.isNavigationBarHidden = true
-        createTable()
         view.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = true
+        
+        createTable()
         splashScreen()
-        viewModel?.getListOfArticles()
+        
+        viewModel?.loadPage()
         viewModel?.delegate = self
-//        newsTableView.prefetchDataSource = self
+        
     }
     
     
@@ -49,28 +52,10 @@ extension NewsLineViewController: UITableViewDataSource {
         let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
         tableViewCell.viewModel = cellViewModel
         
+        if indexPath.row == viewModel.listOfArticles.count - viewModel.prefetchCount && viewModel.isListLoaded {
+            viewModel.loadPage()
+        }
         return tableViewCell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        guard let viewModel = viewModel else { return }
-        
-        print("%%%%%%%%%%%%% LAST LOADED INDEX = ", viewModel.lastLoadedImage)
-//        if indexPath.row == viewModel.lastLoadedImage && viewModel.listOfArticles[viewModel.lastLoadedImage].isImageLoaded == true {
-//            print("############    LOADING BANCH from \(viewModel.lastLoadedImage)")
-//            viewModel.loadImagesForRange(count: 5)
-//        }
-        
-        print("############ willDisplay cell at \(indexPath.row)")
-        
-//        if viewModel?.listOfArticles[indexPath.row].image == nil {
-//
-//        }
-        
-//        if viewModel?.listOfArticles[indexPath.row].image == nil {
-//            viewModel?.loadImageFor(indexPath: indexPath)
-//        }
     }
 }
 
@@ -80,7 +65,7 @@ extension NewsLineViewController:  UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
         
-        webView.newsTitle = viewModel?.listOfArticles[indexPath.row].title
+        webView.urlString = viewModel?.listOfArticles[indexPath.row].url
         
         if let controllers = navigationController?.viewControllers {
             var newControllers = controllers
@@ -88,59 +73,39 @@ extension NewsLineViewController:  UITableViewDelegate{
             navigationController?.setViewControllers(newControllers, animated: true)
         }
     }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        print("############ \(indexPath.row) visible row")
-        return nil
-    }
-    
-    
- 
 }
-
-//MARK: - UITableViewDataSourcePrefetching
-
-//extension NewsLineViewController: UITableViewDataSourcePrefetching {
-//    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-//        for indexPath in indexPaths {
-//            viewModel?.loadImageFor(indexPath: indexPath)            
-//        }
-//    }
-//}
 
 //MARK: - Delegate Methods
 extension NewsLineViewController: LoadDataDelegate {
-    func loadTable() {
-        self.newsTableView.reloadData()
-    }
-    
-    
-    
-    func loadTableData() {
+    func reloadTable() {
         DispatchQueue.main.async {
+            self.newsTableView.reloadData()
+        }
+    }
+
+    func firstLoadTableData() {
+        guard let viewModel = viewModel else { return }
+        DispatchQueue.main.async {
+            
             self.navigationController?.isNavigationBarHidden = false
             UIView.animate(withDuration: 0.3, animations: {
                 self.splashView.alpha = 0
             }) { (bool) in
                 self.splashView.isHidden = true
             }
+            
             self.newsTableView.reloadData()
+            
+            viewModel.tableViewIsLoaded = true
         }
     }
-    
-    func updateImage(indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            self.newsTableView.reloadRows(at: [indexPath], with: .automatic)
-            print("########## UPDATIN IMAGE FOR IndexPath ---- ", indexPath)
-        }
-    }
-    
+
 }
 
 
 //MARK: - Custom methods
 extension NewsLineViewController {
-
+    
     func createTable() {
         newsTableView = UITableView(frame: view.bounds, style: .plain)
         newsTableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: cellIdentifire)
