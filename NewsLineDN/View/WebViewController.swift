@@ -28,7 +28,8 @@ class WebViewController: UIViewController, WKNavigationDelegate {
      
         if let urlString = urlString {
             guard let url = URL(string: urlString) else { return }
-            webView.load(URLRequest(url: url))
+            let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 2)
+            webView.load(request)
             webView.allowsBackForwardNavigationGestures = true
             
         }
