@@ -30,6 +30,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             guard let url = URL(string: urlString) else { return }
             webView.load(URLRequest(url: url))
             webView.allowsBackForwardNavigationGestures = true
+            
         }
     }
     override func viewWillDisappear(_ animated: Bool) {

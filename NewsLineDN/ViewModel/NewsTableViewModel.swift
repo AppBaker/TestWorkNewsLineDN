@@ -60,7 +60,6 @@ class NewsTableViewModel {
                 if self.tableViewIsLoaded {
                     self.delegate?.reloadTable()
                 }
-                
             }
         }
     }

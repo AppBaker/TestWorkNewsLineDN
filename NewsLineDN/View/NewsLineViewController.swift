@@ -14,6 +14,7 @@ class NewsLineViewController: UIViewController {
     
     var splashView: UIView!
     let cellIdentifire = "NewsCell"
+    let loadingCellIdentifier = "LoadingCell"
     let webView = WebViewController()
     
     var newsTableView = UITableView()
@@ -41,13 +42,27 @@ class NewsLineViewController: UIViewController {
 extension NewsLineViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.listOfArticles.count ?? 0
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.listOfArticles.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let viewModel = viewModel else { return UITableViewCell()}
+        
+        if indexPath.row == viewModel.listOfArticles.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath) as! LoadingTableViewCell
+
+            if viewModel.pages < viewModel.currentPage {
+                cell.label.text = "end of download"
+            }
+            return cell
+        }
+        
+        
         let cell = newsTableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as? NewsTableViewCell
         
-        guard let tableViewCell = cell, let viewModel = viewModel else { return UITableViewCell()}
+        guard let tableViewCell = cell else { return UITableViewCell()}
         
         let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
         tableViewCell.viewModel = cellViewModel
@@ -63,14 +78,17 @@ extension NewsLineViewController: UITableViewDataSource {
 extension NewsLineViewController:  UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
         
-        webView.urlString = viewModel?.listOfArticles[indexPath.row].url
-        
-        if let controllers = navigationController?.viewControllers {
-            var newControllers = controllers
-            newControllers.append(webView)
-            navigationController?.setViewControllers(newControllers, animated: true)
+        if indexPath.row == viewModel?.listOfArticles.count {
+            viewModel?.loadPage()
+        } else {
+            webView.urlString = viewModel?.listOfArticles[indexPath.row].url
+                
+                if let controllers = navigationController?.viewControllers {
+                    var newControllers = controllers
+                    newControllers.append(webView)
+                    navigationController?.setViewControllers(newControllers, animated: true)
+            }
         }
     }
 }
@@ -82,7 +100,7 @@ extension NewsLineViewController: LoadDataDelegate {
             self.newsTableView.reloadData()
         }
     }
-
+    
     func firstLoadTableData() {
         guard let viewModel = viewModel else { return }
         DispatchQueue.main.async {
@@ -99,7 +117,7 @@ extension NewsLineViewController: LoadDataDelegate {
             viewModel.tableViewIsLoaded = true
         }
     }
-
+    
 }
 
 
@@ -109,6 +127,7 @@ extension NewsLineViewController {
     func createTable() {
         newsTableView = UITableView(frame: view.bounds, style: .plain)
         newsTableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: cellIdentifire)
+        newsTableView.register(UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: loadingCellIdentifier)
         
         newsTableView.delegate = self
         newsTableView.dataSource = self

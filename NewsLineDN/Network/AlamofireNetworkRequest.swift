@@ -13,6 +13,7 @@ struct AlamofireNetworkRequest {
     
     static func loadNews(url: String, completion: @escaping (_ articles: [Article])->()){
         
+        
         guard let url = URL(string: url) else { return }
         
         AF.request(url, method: .get).validate().responseJSON { (response) in
@@ -39,6 +40,7 @@ struct AlamofireNetworkRequest {
                 
             case .failure(let error):
                 print(error)
+                
             }
         }
     }

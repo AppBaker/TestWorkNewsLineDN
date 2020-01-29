@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		86490161EEB44F54FBDD0622 /* Pods_NewsLineDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72F28F4C2744AAC8F7358D62 /* Pods_NewsLineDN.framework */; };
+		994CF25623E1FA6000383F61 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994CF25423E1FA6000383F61 /* LoadingTableViewCell.swift */; };
+		994CF25723E1FA6000383F61 /* LoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 994CF25523E1FA6000383F61 /* LoadingTableViewCell.xib */; };
 		995719F423D814A50086956C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995719F323D814A50086956C /* AppDelegate.swift */; };
 		995719F623D814A50086956C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995719F523D814A50086956C /* SceneDelegate.swift */; };
 		995719FB23D814A60086956C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 995719F923D814A60086956C /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 		27CF7580AD18B6E9F9AEFE76 /* Pods-NewsLineDN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLineDN.release.xcconfig"; path = "Target Support Files/Pods-NewsLineDN/Pods-NewsLineDN.release.xcconfig"; sourceTree = "<group>"; };
 		327AAE0DAF80447A1F01E959 /* Pods-NewsLineDN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsLineDN.debug.xcconfig"; path = "Target Support Files/Pods-NewsLineDN/Pods-NewsLineDN.debug.xcconfig"; sourceTree = "<group>"; };
 		72F28F4C2744AAC8F7358D62 /* Pods_NewsLineDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsLineDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		994CF25423E1FA6000383F61 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		994CF25523E1FA6000383F61 /* LoadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingTableViewCell.xib; sourceTree = "<group>"; };
 		995719F023D814A50086956C /* NewsLineDN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsLineDN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		995719F323D814A50086956C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		995719F523D814A50086956C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				99571A1223D83A070086956C /* WebViewController.swift */,
 				99571A1323D83A070086956C /* WebViewController.xib */,
 				99571A0723D81E0E0086956C /* NewsLineViewController.swift */,
+				994CF25423E1FA6000383F61 /* LoadingTableViewCell.swift */,
+				994CF25523E1FA6000383F61 /* LoadingTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				994CF25723E1FA6000383F61 /* LoadingTableViewCell.xib in Resources */,
 				99571A0023D814A80086956C /* LaunchScreen.storyboard in Resources */,
 				995719FD23D814A80086956C /* Assets.xcassets in Resources */,
 				995719FB23D814A60086956C /* Main.storyboard in Resources */,
@@ -282,6 +289,7 @@
 				99571A1F23D8718F0086956C /* AlamofireNetworkRequest.swift in Sources */,
 				99571A1C23D869840086956C /* NewsTableViewModel.swift in Sources */,
 				99571A1023D82A8D0086956C /* NewsTableViewCell.swift in Sources */,
+				994CF25623E1FA6000383F61 /* LoadingTableViewCell.swift in Sources */,
 				995719F623D814A50086956C /* SceneDelegate.swift in Sources */,
 				995B02D623D94626005008AC /* TableViewCellViewModelType.swift in Sources */,
 				99571A0823D81E0E0086956C /* NewsLineViewController.swift in Sources */,
