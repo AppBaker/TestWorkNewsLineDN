@@ -34,6 +34,7 @@
 		994CF25423E1FA6000383F61 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		994CF25523E1FA6000383F61 /* LoadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingTableViewCell.xib; sourceTree = "<group>"; };
 		994FBA9123E29E2E00509C50 /* TableViewCellViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModelType.swift; sourceTree = "<group>"; };
+		994FBA9323E2A2E200509C50 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		995719F023D814A50086956C /* NewsLineDN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsLineDN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		995719F323D814A50086956C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		995719F523D814A50086956C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		995719E723D814A50086956C = {
 			isa = PBXGroup;
 			children = (
+				994FBA9323E2A2E200509C50 /* README.md */,
 				995719F223D814A50086956C /* NewsLineDN */,
 				995719F123D814A50086956C /* Products */,
 				CBC566EF80C3A36D5233CF44 /* Pods */,
