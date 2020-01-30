@@ -29,8 +29,6 @@ class NewsTableViewModel {
     var delegate: LoadDataDelegate?
     var listOfArticles = [Article]()
     
-    
-    
     let viewTitle = "News"
     private let url = "http://newsapi.org/v2/everything?q=android&from=2019-04-00&sortBy=publishedAt&apiKey=bfa2ee84523d4d9889e397b2fd6c141c&page="
     

@@ -111,7 +111,6 @@ extension NewsLineViewController: LoadDataDelegate {
                 }) { (bool) in
                     self.splashView.isHidden = true
                 }
-                
                 self.newsTableView.reloadData()
                 self.viewModel?.firestLoad = true
             }
@@ -124,6 +123,7 @@ extension NewsLineViewController: LoadDataDelegate {
 extension NewsLineViewController {
     
     func createTable() {
+        
         newsTableView = UITableView(frame: view.bounds, style: .plain)
         newsTableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: cellIdentifire)
         newsTableView.register(UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: loadingCellIdentifier)
