@@ -23,7 +23,6 @@
 		99571A1923D867530086956C /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99571A1823D867530086956C /* NewsModel.swift */; };
 		99571A1C23D869840086956C /* NewsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99571A1B23D869840086956C /* NewsTableViewModel.swift */; };
 		99571A1F23D8718F0086956C /* AlamofireNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99571A1E23D8718F0086956C /* AlamofireNetworkRequest.swift */; };
-		995B02D623D94626005008AC /* TableViewCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B02D523D94626005008AC /* TableViewCellViewModelType.swift */; };
 		995B02D823D94788005008AC /* TableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B02D723D94788005008AC /* TableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +47,6 @@
 		99571A1823D867530086956C /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		99571A1B23D869840086956C /* NewsTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewModel.swift; sourceTree = "<group>"; };
 		99571A1E23D8718F0086956C /* AlamofireNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkRequest.swift; sourceTree = "<group>"; };
-		995B02D523D94626005008AC /* TableViewCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModelType.swift; sourceTree = "<group>"; };
 		995B02D723D94788005008AC /* TableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +87,6 @@
 				99571A1723D866C50086956C /* Model */,
 				99571A0923D828A60086956C /* View */,
 				99571A1623D866AC0086956C /* ViewModel */,
-				995B02D423D945FC005008AC /* Protocols */,
 				995719F323D814A50086956C /* AppDelegate.swift */,
 				995719F523D814A50086956C /* SceneDelegate.swift */,
 				995719F923D814A60086956C /* Main.storyboard */,
@@ -103,11 +100,11 @@
 		99571A0923D828A60086956C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				99571A0723D81E0E0086956C /* NewsLineViewController.swift */,
 				99571A0E23D82A8D0086956C /* NewsTableViewCell.swift */,
 				99571A0F23D82A8D0086956C /* NewsTableViewCell.xib */,
 				99571A1223D83A070086956C /* WebViewController.swift */,
 				99571A1323D83A070086956C /* WebViewController.xib */,
-				99571A0723D81E0E0086956C /* NewsLineViewController.swift */,
 				994CF25423E1FA6000383F61 /* LoadingTableViewCell.swift */,
 				994CF25523E1FA6000383F61 /* LoadingTableViewCell.xib */,
 			);
@@ -137,14 +134,6 @@
 				99571A1E23D8718F0086956C /* AlamofireNetworkRequest.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		995B02D423D945FC005008AC /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				995B02D523D94626005008AC /* TableViewCellViewModelType.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		CBC566EF80C3A36D5233CF44 /* Pods */ = {
@@ -291,7 +280,6 @@
 				99571A1023D82A8D0086956C /* NewsTableViewCell.swift in Sources */,
 				994CF25623E1FA6000383F61 /* LoadingTableViewCell.swift in Sources */,
 				995719F623D814A50086956C /* SceneDelegate.swift in Sources */,
-				995B02D623D94626005008AC /* TableViewCellViewModelType.swift in Sources */,
 				99571A0823D81E0E0086956C /* NewsLineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

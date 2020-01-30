@@ -39,8 +39,8 @@ struct AlamofireNetworkRequest {
                 }
                 
             case .failure(let error):
-                print(error)
-                
+                print("ERROR: ", error)
+                completion([Article]())
             }
         }
     }

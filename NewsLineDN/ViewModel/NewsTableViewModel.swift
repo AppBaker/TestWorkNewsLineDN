@@ -17,12 +17,13 @@ protocol LoadDataDelegate {
 
 class NewsTableViewModel {
     
+    var firestLoad = false
     var tableViewIsLoaded = false
+    var isListLoaded = false
+    
     var currentPage = 1
     let pages = 5
     let prefetchCount = 5
-    var isListLoaded = false
-    var imageLoaded = 0
     var firstListNewsCount = 0
     
     var delegate: LoadDataDelegate?
@@ -41,29 +42,36 @@ class NewsTableViewModel {
         isListLoaded = false
         if currentPage <= pages {
             AlamofireNetworkRequest.loadNews(url: getUrl(page: currentPage)) { (articles) in
+                if articles.count > 0 {
+                    self.currentPage += 1
+                }
+                print(self.currentPage)
                 self.firstListNewsCount = articles.count
                 let startIndex = self.listOfArticles.count
                 self.listOfArticles.append(contentsOf: articles)
+                
                 for index in startIndex..<self.listOfArticles.count {
+                    
                     AlamofireNetworkRequest.loadImage(url: self.listOfArticles[index].urlToImage) { (image) in
                         self.listOfArticles[index].image = image
                         self.listOfArticles[index].isImageLoaded = true
-                        self.imageLoaded += 1
-
-                        if self.firstListNewsCount == self.imageLoaded, !self.tableViewIsLoaded {
+                        
+                        if !self.firestLoad {
                             self.delegate?.firstLoadTableData()
                         }
                     }
                 }
-                self.isListLoaded = true
-                self.currentPage += 1
-                if self.tableViewIsLoaded {
+                
+                if !self.firestLoad {
+                    self.delegate?.firstLoadTableData()
+                } else {
                     self.delegate?.reloadTable()
                 }
+                self.isListLoaded = true
             }
         }
     }
-
+    
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelType? {
         let article = listOfArticles[indexPath.row]
         

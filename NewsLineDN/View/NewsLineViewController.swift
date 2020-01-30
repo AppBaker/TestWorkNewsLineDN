@@ -52,7 +52,7 @@ extension NewsLineViewController: UITableViewDataSource {
         
         if indexPath.row == viewModel.listOfArticles.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath) as! LoadingTableViewCell
-
+            
             if viewModel.pages < viewModel.currentPage {
                 cell.label.text = "end of download"
             }
@@ -78,16 +78,16 @@ extension NewsLineViewController: UITableViewDataSource {
 extension NewsLineViewController:  UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print(indexPath.row)
         if indexPath.row == viewModel?.listOfArticles.count {
             viewModel?.loadPage()
         } else {
             webView.urlString = viewModel?.listOfArticles[indexPath.row].url
-                
-                if let controllers = navigationController?.viewControllers {
-                    var newControllers = controllers
-                    newControllers.append(webView)
-                    navigationController?.setViewControllers(newControllers, animated: true)
+            
+            if let controllers = navigationController?.viewControllers {
+                var newControllers = controllers
+                newControllers.append(webView)
+                navigationController?.setViewControllers(newControllers, animated: true)
             }
         }
     }
@@ -102,22 +102,21 @@ extension NewsLineViewController: LoadDataDelegate {
     }
     
     func firstLoadTableData() {
-        guard let viewModel = viewModel else { return }
-        DispatchQueue.main.async {
-            
-            self.navigationController?.isNavigationBarHidden = false
-            UIView.animate(withDuration: 0.3, animations: {
-                self.splashView.alpha = 0
-            }) { (bool) in
-                self.splashView.isHidden = true
+        
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+            DispatchQueue.main.async {
+                self.navigationController?.isNavigationBarHidden = false
+                UIView.animate(withDuration: 1, animations: {
+                    self.splashView.alpha = 0
+                }) { (bool) in
+                    self.splashView.isHidden = true
+                }
+                
+                self.newsTableView.reloadData()
+                self.viewModel?.firestLoad = true
             }
-            
-            self.newsTableView.reloadData()
-            
-            viewModel.tableViewIsLoaded = true
         }
     }
-    
 }
 
 
@@ -131,7 +130,6 @@ extension NewsLineViewController {
         
         newsTableView.delegate = self
         newsTableView.dataSource = self
-        
         newsTableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         view.addSubview(newsTableView)
